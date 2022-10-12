@@ -75,6 +75,7 @@ class Game {
 		this.endMoveListenerByKey;
 		this.startMoveListenerByTouch;
 		this.endMoveListenerByTouch;
+		this.moveListenerByAccelerometer;
 		this.blockGamePlay; //Блок, где расположен канвас
 		this.backGround = new Image();
 		this.backGround.src = 'img/clouds.jpg'
@@ -99,6 +100,9 @@ class Game {
 			this.createButtons(this.blockGamePlay)
 			this.blockGamePlay.addEventListener('touchstart', this.startMoveListenerByTouch);
 			this.blockGamePlay.addEventListener('touchend', this.endMoveListenerByTouch);
+		} else if (this.model.control === 'accelerometer' && this.cnr.closest('._touch')) {
+			this.moveListenerByAccelerometer = this.moveByAccelerometer.bind(this)
+				window.addEventListener('deviceorientation', this.moveListenerByAccelerometer)
 		}
 
 		window.addEventListener('keydown', this.startMoveListenerByKey)
@@ -113,7 +117,7 @@ class Game {
 		this.ctx.restore();
 	}
 
-	updateBall() { //TODO: MOVING BALL
+	updateBall() { //TODO: MOTION BALL
 
 		if ((this.keys.d && this.keys.lastKey === 'd') || (this.keys.right && this.keys.lastKey === 'right')) {
 			this.ballPosX += this.ballVelocity;
@@ -268,6 +272,18 @@ class Game {
 			case 'KeyD':
 				this.keys.d = false
 				break
+		}
+	}
+
+	moveByAccelerometer(e) { //TODO: ACCELEROMETER
+		if (e.gamma > 0) {
+			this.keys.right = true;
+			this.keys.lastKey = 'right';
+			this.keys.d = false
+		} else if (e.gamma < 0) {
+			this.keys.left = true;
+			this.keys.lastKey = 'left';
+			this.keys.right = false
 		}
 	}
 

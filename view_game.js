@@ -41,6 +41,7 @@ class View {
 					}
 					if ( e.target.getAttribute('id') === 'accelerometer') {
 						this.model.control = e.target.value;
+						DeviceOrientationEvent.requestPermission();
 					}
 					this.saveLocalStorage()
 				})
@@ -74,7 +75,8 @@ class View {
 		})
 
 	}
-	showModalBalls(form, e) {
+
+	showModalBalls(form, e) { //МОДАЛКА ВЫБОРА МЯЧЕЙ
 		e.preventDefault()
 		form.innerHTML = ''
 		form.closest('body').style.overflow='hidden';
@@ -102,7 +104,7 @@ class View {
 		})
 	}
 
-	showModalSettings(form, e) {
+	showModalSettings(form, e) { //МОДАЛКА НАСТРОЕК
 		form.closest('body').style.overflow='hidden';
 		e.preventDefault();
 

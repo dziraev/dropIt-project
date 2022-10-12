@@ -23,7 +23,7 @@
 			});
 	};
 
-	const loadLocalStorage = new Promise((resolve, reject) => {
+	const loadLocalStorage = new Promise((resolve) => {
 		const nameGame = 'dropIt'
 		const getLs    = localStorage.getItem(nameGame)
 		if (getLs) {
