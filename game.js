@@ -277,17 +277,13 @@ class Game {
 	}
 
 	moveByAccelerometer(e) { //TODO: ACCELEROMETER
-		// if (e.gamma > 0) {
-		// 	this.keys.right = true;
-		// 	this.keys.lastKey = 'right';
-		// 	this.keys.d = false
-		// } else if (e.gamma < 0) {
-		// 	this.keys.left = true;
-		// 	this.keys.lastKey = 'left';
-		// 	this.keys.right = false
-		// }
 		const x = e.gamma;
-		this.ballPosX += x
+		this.ballPosX += x/10;
+		if (x > 0) {
+			this.rotation -=x/10
+		} else {
+			this.rotation +=x/10
+		}
 	}
 
 	endGame() { //TODO: ENDGAME
