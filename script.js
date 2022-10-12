@@ -55,5 +55,4 @@
 
 		setTimeout(renderGame, 1000)
 	})
-	alert(navigator.vibrate)
 }())

@@ -113,7 +113,7 @@ class Game {
 		this.ctx.restore();
 	}
 
-	updateBall() {
+	updateBall() { //TODO: MOVING BALL
 
 		if ((this.keys.d && this.keys.lastKey === 'd') || (this.keys.right && this.keys.lastKey === 'right')) {
 			this.ballPosX += this.ballVelocity;
@@ -126,10 +126,16 @@ class Game {
 		//ПРАВАЯ ГРАНИЦА
 		if (this.ballPosX - this.ballRadius <= 0) {
 			this.ballPosX = this.ballRadius;
+			if (navigator.vibrate && this.model.vibration) {
+				navigator.vibrate([100, 50, 100])
+			}
 		}
 		//ЛЕВАЯ ГРАНИЦА
 		if (this.ballPosX + this.ballRadius  > this.cnvWidth) {
 			this.ballPosX = this.cnvWidth - this.ballRadius ;
+			if (navigator.vibrate && this.model.vibration) {
+				navigator.vibrate([100, 50, 100])
+			}
 		}
 
 		this.ballPosY += this.ballGravity;
@@ -265,7 +271,7 @@ class Game {
 		}
 	}
 
-	endGame() {
+	endGame() { //TODO: ENDGAME
 		cancelAnimationFrame(this.id);
 		window.removeEventListener('keydown', this.startMoveListenerByKey)
 		window.removeEventListener('keyup', this.endMoveListenerByKey)
@@ -276,7 +282,9 @@ class Game {
 
 		this.cnr.querySelector('.game__score').textContent = this.score;
 		this.model.sound ? this.soundLose.play() : null;
-		this.model.vibration ? navigator.vibrate(600) : null;
+		if (navigator.vibrate && this.model.vibration) {
+			navigator.vibrate(600)
+		}
 	}
 
 
