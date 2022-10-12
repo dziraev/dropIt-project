@@ -5,7 +5,6 @@ class View {
     }
 
 	run() {
-		alert(this.model.vibration)
 		if(this.isMobile().isMobile && this.isMobile().isIOS ) {
 			document.body.classList.add('_touch', '_ios')
 		} else if (this.isMobile().isMobile) {
