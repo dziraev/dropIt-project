@@ -1,0 +1,71 @@
+/* =============== */
+/* &display=swap&subset=cyrillic-ext */
+@import url('https://fonts.googleapis.com/css?family=Roboto:100,300,regular,500,700,900&display=swap');
+@import "null";
+@import "variables";
+
+
+/*===========BLOCKS============*/
+@import "blocks/game";
+@import "blocks/modal";
+@import "blocks/balls";
+@import "blocks/settings";
+@import "loader";
+
+
+
+
+/*==========STYLES===========*/
+.button {
+    background-color: #3dd1e7;
+    color: #000;
+    display: flex;
+    font-family: Roboto;
+    font-size: 1rem;
+    font-weight: 700;
+    justify-content: center;
+    line-height: 1.75rem;
+    padding: 0.75rem 3rem;
+    text-align: center;
+    width: 100%;
+    max-width: 460px;
+    position: relative;
+    cursor: pointer;
+    transform: rotate(-2deg);
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    &:focus {
+        outline: 0;
+    }
+    &:after {
+        content: '';
+        position: absolute;
+        border: 1px solid #000000;
+        bottom: 4px;
+        left: 4px;
+        width: calc(100% - 1px);
+        height: calc(100% - 1px);
+    }
+    @media(any-hover: hover) {
+        &:hover:after {
+            bottom: 2px;
+            left: 2px;
+        }
+    }
+
+    @media (min-width: 768px) {
+        padding: .75rem 4rem;
+        font-size: 1.25rem;
+    }
+}
+
+canvas {
+    border: 3px solid $black;
+    color: $dark-red;
+}
+
+
+._hidden {
+    display: none;
+}

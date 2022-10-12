@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>dropIt</title>
+</head>
+<body>
+    <div class="wrapper">
+        <main class="game">
+            <div class="game__container">
+                <div class="game__play _hidden"></div>
+                <div class="game__load">
+                    <div class="loader"></div>
+                </div>
+                <div class="game__menu _hidden">
+                    <h2 class="game__name">Drop It</h2>
+                    <div class="game__settings">
+                        <button class="game__button game__button_play button">Play</button>
+                        <button class="game__button game__button_score button">Score</button>
+                        <button class="game__button game__button_settings button">Settings</button>
+                        <button class="game__button game__button_balls button">Balls</button>
+                    </div>
+                </div>
+                <div class="game__menu game__menu_game-over _hidden">
+                    <h2 class="game__score"></h2>
+                    <div class="game__settings">
+                        <button class="game__button game__button_restart button">Restart</button>
+                        <button class="game__button game__button_menu button">Menu</button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal modal_balls">
+                <div class="modal__inner">
+                    <div data-close class="modal__close">&times;</div>
+                    <h2 class="modal__title">Choose the ball</h2>
+                    <div class="modal__container">
+                        <form class="balls" name="formBalls"></form>
+                    </div>
+                </div>
+            </div>
+            <div class="modal modal_settings">
+                <div class="modal__inner">
+                    <div data-close class="modal__close">&times;</div>
+                    <div class="modal__container">
+                        <form class="settings" name="formSettings"></form>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <footer class="footer">
+        </footer>
+    </div>
+    <script src="spa.js"></script>
+    <script src="script.js"></script>
+    <script src="game.js"></script>
+    <script src="view_game.js"></script>
+</body>
+
+</html>

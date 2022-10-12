@@ -1,0 +1,30 @@
+//Colors
+
+$blue: #3dd1e7;
+$black: #000000;
+$dark-red: #ff4040;
+$arrowBg: #f5f5f5ff;
+
+
+// Adaptive
+$desktop: 1050px;
+$tablet: 991.98px;
+$mobile: 767.98px;
+$small: 320px;
+
+
+
+//Mixins
+
+$maxWidth: 1920;
+
+@mixin adaptive-font($pcSize, $mobSize) {
+    $addSize: $pcSize - $mobSize;
+    $addMobSize: $addSize + $addSize * 0.7;
+    @media (max-width: $tablet) {
+        font-size: calc(#{$mobSize + px} + #{$addMobSize} * ((100vw - #{$small}) / #{$maxWidth}));
+    }
+    @media (min-width: $tablet) {
+        font-size: calc(#{$mobSize + px} + #{$addSize} * (100vw / #{$maxWidth}));
+    }
+}

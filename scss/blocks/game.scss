@@ -1,0 +1,125 @@
+
+.game {
+    background-color: #6b86b7;
+    background-image: linear-gradient(16deg, rgba(107, 134, 183, 1) 0%, rgba(0, 0, 0, 0.1) 25%, rgba(107, 134, 183, 1) 50%, rgba(0, 0, 0, 0.1) 75%, rgba(107, 134, 183, 1) 100%);
+    background-size: 5px 5px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    text-align: center;
+    // .game__container
+    &__container {
+    }
+    // .game__play
+    &__play {
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        align-content: center;
+       position: relative;
+    }
+    // .game__name
+    &__name, &__score {
+        @include adaptive-font(60, 30);
+        font-weight: 700;
+        text-transform: uppercase;
+        margin-bottom: 3vh;
+    }
+    // .game__menu
+    &__menu {
+        // .game__menu_game-over
+        &_game-over {
+
+        }
+    }
+    // .game__settings
+    &__settings {
+        display: flex;
+        flex-direction: column;
+        row-gap: 4vh;
+    }
+    // .game__button
+    &__button {
+
+    }
+}
+
+$width: 4vw;
+$angle : 35deg;
+//КНОПКИ УПРАВЛЕНИЯ
+.control {
+    width: 100%;
+    position: absolute;
+    bottom: 10vh;
+    left: 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    //.control__arrow
+    &__arrow {
+        background-color: $dark-red;
+        border-radius: 1rem;
+        cursor: pointer;
+        padding: 4vh ;
+        opacity: 0.8;
+        &._active {
+            opacity: 1;
+        }
+    }
+    //.control__button
+    &__button {
+        position: relative;
+        background-color: $arrowBg;
+        border-radius: 1rem;
+        width: $width;
+        height: $width/10;
+        &_left, &_right {
+            &:before, &:after {
+                display: block;
+                content: "";
+                position: absolute;
+                background: $arrowBg;
+                width: $width/2;
+                height: $width/10;
+                transform-origin: $width/20 center;
+                border-radius: 1rem;
+            }
+        }
+        //.control__button_left
+        &_left {
+            &:before {
+                left: 0;
+                transform: rotate(-$angle);
+            }
+            &:after {
+                left: 0;
+                transform: rotate($angle);
+            }
+        }
+        //.control__button_right
+        &_right {
+            &:before {
+                left: $width - $width/20;
+                transform: rotate(-$angle*4);
+            }
+            &:after {
+                left: $width - $width/20;
+                transform: rotate($angle*4);
+            }
+        }
+    }
+}
+
+
+
+
+
+

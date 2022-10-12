@@ -1,0 +1,63 @@
+.modal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    justify-content: center;
+    overflow: auto;
+    display: none;
+    z-index: 10;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    max-width: 100vw;
+
+    &._active {
+        display: flex;
+    }
+    &__inner {
+        width: 70vh;
+        border-radius: 10px;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        padding: 40px 10px 10px;
+        background-color: rgba(51, 51, 51, 1);
+    }
+    &__title {
+        @include adaptive-font(50, 30);
+        color: $blue;
+        font-weight: 700;
+    }
+
+    &__close {
+        position: absolute;
+        top: 8px;
+        right: 14px;
+        font-size: 30px;
+        font-weight: 700;
+        background-color: transparent;
+        cursor: pointer;
+        transition: all 0.3s ease 0s;
+        @media (any-hover: hover) {
+            &:hover {
+                color: $dark-red;
+                transform: scale(1.5);
+            }
+        }
+        @media (max-width: $tablet) {
+            color: $dark-red;
+            font-size: 50px;
+        }
+
+    }
+
+    &__container {
+        width: 100%;
+        height: 100%;
+    }
+
+
+}
+

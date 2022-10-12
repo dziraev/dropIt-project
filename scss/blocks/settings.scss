@@ -1,0 +1,126 @@
+.settings {
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    color: $blue;
+    row-gap: 20px;
+    text-align: start;
+
+    //settings__line
+    &__line {
+        width: 100%;
+        position: relative;
+        padding-bottom: 2px;
+        border-bottom: 1px solid #5b3737;
+        text-transform: capitalize;
+        &_vibration {
+            ._pc &, ._ios & {
+                display: none;
+            }
+        }
+    }
+    // .settings__label
+    &__label {
+        font-weight: 700;
+        @include adaptive-font(40, 30);
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        column-gap: 10px;
+        &::after {
+            content: '';
+            flex: 0 0 40px;
+            height: 40px;
+            outline-offset: -3px;
+            outline: 3px solid $dark-red;
+            background-color: transparent;
+            transition: all 0.3s ease 0s;
+            @media (max-width: $mobile) {
+                flex: 0 0 30px;
+                height: 30px;
+            }
+        }
+    }
+    // .settings__input
+    &__input {
+        cursor: pointer;
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        &:checked + .settings__label::after {
+            background-color: $dark-red;
+            transform: rotate(180deg);
+        }
+        &:focus + .settings__label {
+            outline: none
+        }
+    }
+}
+
+.radio {
+    ._pc & {
+        display: none;
+    }
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    //settings__title
+    &__title{
+        @include adaptive-font(40, 30);
+        font-weight: 700;
+        margin-bottom: 10px;
+    }
+    &__item {
+        position: relative;
+        &:not(:last-child) {
+            margin: 0px 0px 10px 0px;
+        }
+    }
+    &__input {
+        width: 0;
+        height: 0;
+        cursor: pointer;
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0;
+
+        &:checked + .radio__label::after {
+            transform: translate(50%,-50%) scale(1);
+        }
+    }
+    &__label {
+        text-transform: uppercase;
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        column-gap: 10px;
+        cursor: pointer;
+        &::before {
+            content: '';
+            flex: 0 0 30px;
+            height: 30px;
+            min-width: 30px;
+            border-radius: 50%;
+            background-color: #fff;
+            border: 2px solid $dark-red;
+        }
+        &::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            background-color: $dark-red;
+            border-radius: 50%;
+            height: 15px;
+            width: 15px;
+            transform: translate(50%,-50%) scale(0);
+            transition: all 0.3s ease 0s;
+        }
+    }
+
+}
