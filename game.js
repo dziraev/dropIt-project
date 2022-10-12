@@ -109,7 +109,8 @@ class Game {
 		window.addEventListener('keyup', this.endMoveListenerByKey)
 		this.updateGame();
 	}
-	drawBall() {
+
+	drawBall() { //TODO: DRAWING BALL
 		this.ctx.save();
 		this.ctx.translate(this.ballPosX,this.ballPosY);
 		this.ctx.rotate(this.rotation * Math.PI/180);
@@ -276,15 +277,17 @@ class Game {
 	}
 
 	moveByAccelerometer(e) { //TODO: ACCELEROMETER
-		if (e.gamma > 0) {
-			this.keys.right = true;
-			this.keys.lastKey = 'right';
-			this.keys.d = false
-		} else if (e.gamma < 0) {
-			this.keys.left = true;
-			this.keys.lastKey = 'left';
-			this.keys.right = false
-		}
+		// if (e.gamma > 0) {
+		// 	this.keys.right = true;
+		// 	this.keys.lastKey = 'right';
+		// 	this.keys.d = false
+		// } else if (e.gamma < 0) {
+		// 	this.keys.left = true;
+		// 	this.keys.lastKey = 'left';
+		// 	this.keys.right = false
+		// }
+		const x = e.gamma;
+		this.ballPosX += x
 	}
 
 	endGame() { //TODO: ENDGAME
@@ -295,6 +298,7 @@ class Game {
 			this.blockGamePlay.removeEventListener('touchstart', this.startMoveListenerByTouch);
 			this.blockGamePlay.removeEventListener('touchend', this.endMoveListenerByTouch);
 		}
+		window.removeEventListener('deviceorientation', this.moveListenerByAccelerometer)
 
 		this.cnr.querySelector('.game__score').textContent = this.score;
 		this.model.sound ? this.soundLose.play() : null;
