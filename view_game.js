@@ -5,6 +5,7 @@ class View {
     }
 
 	run() {
+		this.saveLocalStorage()
 		if(this.isMobile().isMobile && this.isMobile().isIOS ) {
 			document.body.classList.add('_touch', '_ios')
 		} else if (this.isMobile().isMobile) {
@@ -67,7 +68,6 @@ class View {
 			}
 		})
 
-
 		window.addEventListener('keydown', (e) => {
 			const openModal = document.querySelector('.modal._active');
 			if (openModal && e.code === 'Escape') openModal.classList.remove('_active');
@@ -75,12 +75,9 @@ class View {
 
 	}
 	showModalBalls(form, e) {
-		console.log(this.model)
+		e.preventDefault()
 		form.innerHTML = ''
 		form.closest('body').style.overflow='hidden';
-		e.preventDefault()
-
-
 		this.data.balls.forEach((ball, i) => {
 			const ballItem = document.createElement('div');
 			ballItem.classList.add('balls__item');

@@ -123,9 +123,11 @@ class Game {
 			this.ballPosX -= this.ballVelocity;
 			this.rotation -= this.rotationSpeed;
 		}
+		//ПРАВАЯ ГРАНИЦА
 		if (this.ballPosX - this.ballRadius <= 0) {
 			this.ballPosX = this.ballRadius;
 		}
+		//ЛЕВАЯ ГРАНИЦА
 		if (this.ballPosX + this.ballRadius  > this.cnvWidth) {
 			this.ballPosX = this.cnvWidth - this.ballRadius ;
 		}
@@ -220,6 +222,7 @@ class Game {
 			}
 		}
 	}
+
 	endMoveByTouch(e) { //Управление мяча с помощью тача
 		e.preventDefault()
 		const endArrow = e.target.closest('.control__arrow');
@@ -263,7 +266,6 @@ class Game {
 	}
 
 	endGame() {
-		alert(this.model.vibration)
 		cancelAnimationFrame(this.id);
 		window.removeEventListener('keydown', this.startMoveListenerByKey)
 		window.removeEventListener('keyup', this.endMoveListenerByKey)
@@ -274,7 +276,7 @@ class Game {
 
 		this.cnr.querySelector('.game__score').textContent = this.score;
 		this.model.sound ? this.soundLose.play() : null;
-		this.model.vibration ? navigator.vibrate(1000) : null;
+		this.model.vibration ? navigator.vibrate(600) : null;
 	}
 
 
