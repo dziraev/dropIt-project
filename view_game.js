@@ -287,15 +287,17 @@ class View {
 	validInputUsername(input) { //TODO: VALIDATION
 		debugger
 		const inputValue = input.value;
-		if (this.data.scores.length) {
+		if (this.data.scores.length && /([A-Za-z0-9_]{3,15})/.test(inputValue)) {
 			for (let i = 0; i < this.data.scores.length; i++) {
 				const score = this.data.scores[i];
-				if (score === inputValue) return false
+				if (score === inputValue) {
+					return false
+				} else {
+					this.model.username = inputValue;
+					this.saveLocalStorage()
+					return true
+				}
 			}
-		} else if (/([A-Za-z0-9_]{3,15})/.test(inputValue)) {
-			this.model.username = inputValue;
-			this.saveLocalStorage()
-			return true
 		} else {
 			return false
 		}
