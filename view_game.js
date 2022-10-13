@@ -51,7 +51,7 @@ class View {
 					if (e.target.getAttribute('id') === 'buttons') {
 						this.model.control = e.target.value;
 					}
-					if ( e.target.getAttribute('id') === 'accelerometer' && DeviceMotionEvent) {
+					if ( e.target.getAttribute('id') === 'accelerometer') {
 						const target = e.target.value;
 						DeviceOrientationEvent.requestPermission()
 							.then(response => {
