@@ -31,10 +31,8 @@ class View {
 						if (this.validInputUsername(inputUsername)) {
 							window.location.hash = 'Play'
 							inputUsername.parentElement.innerHTML = ''
-						} else {
-								inputUsername.focus()
-							}
 						}
+					}
 				})
 			}
 			if (btn.classList.contains('game__button_settings')) {
@@ -54,10 +52,11 @@ class View {
 						this.model.control = e.target.value;
 					}
 					if ( e.target.getAttribute('id') === 'accelerometer' && DeviceMotionEvent) {
+						const target = e.target.value;
 						DeviceOrientationEvent.requestPermission()
 							.then(response => {
 								if (response === 'granted') {
-									this.model.control = e.target.value;
+									this.model.control = target;
 								}
 							})
 
@@ -127,7 +126,7 @@ class View {
 		topList.classList.add('score__list', 'list-score');
 		this.data.scores
 		    .sort((a,b) => {
-				return a.score - b.score
+				return b.score - a.score
 		    })
 		for(let i = 0; i < this.data.scores.length; i++) {
 			const item = this.data.scores[i];
@@ -291,14 +290,17 @@ class View {
 			for (let i = 0; i < this.data.scores.length; i++) {
 				const score = this.data.scores[i];
 				if (score === inputValue) {
+					input.classList.add('_error')
 					return false
 				} else {
 					this.model.username = inputValue;
 					this.saveLocalStorage()
+					input.classList.remove('_error')
 					return true
 				}
 			}
 		} else {
+			input.classList.add('_error')
 			return false
 		}
 	}
