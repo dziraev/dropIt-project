@@ -23,6 +23,7 @@ class View {
 		buttonsArr.forEach(btn => {
 			if (btn.classList.contains('game__button_play') ) {
 				btn.addEventListener('click', () => {
+					e.preventDefault()
 					if (this.model.username) {
 						window.location.hash = 'Play'
 					} else {
