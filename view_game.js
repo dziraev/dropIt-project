@@ -31,6 +31,8 @@ class View {
 						if (this.validInputUsername(inputUsername)) {
 							window.location.hash = 'Play'
 							inputUsername.parentElement.innerHTML = ''
+						} else {
+							inputUsername.focus()
 						}
 					}
 				})
