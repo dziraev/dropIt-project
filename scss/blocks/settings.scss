@@ -29,8 +29,9 @@
         cursor: pointer;
         display: inline-flex;
         align-items: center;
-        column-gap: 10px;
+        //column-gap: 10px;
         &::after {
+            margin-left: 10px;
             content: '';
             flex: 0 0 40px;
             height: 40px;

@@ -193,8 +193,8 @@ class Game {
 			pipe.updatePipe()
 		}
 
-		this.updateBall()
-		this.drawCount()
+		this.updateBall();
+		this.drawScore();
 
 		this.id = requestAnimationFrame(this.updateGame.bind(this))
 
@@ -207,7 +207,7 @@ class Game {
 
 	}
 
-	drawCount() { //Вывод очков
+	drawScore() { //Вывод очков
 		this.ctx.fillStyle = '#fff'
 		this.ctx.lineWidth = 2;
 		this.ctx.font = '35px Roboto';
@@ -279,14 +279,10 @@ class Game {
 	moveByAccelerometer(e) { //TODO: ACCELEROMETER
 		const x = e.gamma;
 		this.ballPosX += x/10;
-		if (x > 0) {
-			this.rotation -=x/10
-		} else {
-			this.rotation +=x/10
-		}
+		this.rotation +=x
 	}
 
-	endGame() { //TODO: ENDGAME
+	endGame() { //TODO: END GAME
 		cancelAnimationFrame(this.id);
 		window.removeEventListener('keydown', this.startMoveListenerByKey)
 		window.removeEventListener('keyup', this.endMoveListenerByKey)
@@ -297,6 +293,11 @@ class Game {
 		window.removeEventListener('deviceorientation', this.moveListenerByAccelerometer)
 
 		this.cnr.querySelector('.game__score').textContent = this.score;
+		if (this.score > this.model.score) {
+			this.model.score = this.score;
+			localStorage.setItem('dropIt', JSON.stringify(this.model));
+			this.saveScoreToServer()
+		}
 		this.model.sound ? this.soundLose.play() : null;
 		if (navigator.vibrate && this.model.vibration) {
 			navigator.vibrate(600)
@@ -329,12 +330,53 @@ class Game {
 		elem.append(blockBtn)
 	}
 
-
 	drawBackground(y) { //Отрисовка фона
 		this.backGroundPosY = (this.backGroundPosY - y) % 1024 ;
 		this.ctx.drawImage(this.backGround, 0, 0 , 1024, 1024, 0, this.backGroundPosY, 1024 , 1024 )
 		this.ctx.drawImage(this.backGround, 0, 0 , 1024, 1024, 0, this.backGroundPosY + 1024 , 1024 , 1024)
 	}
 
+	saveScoreToServer() {
+		debugger
+		const ls = JSON.parse(localStorage.getItem('dropIt'));
+		const stringName        = 'DZIRAEV_DMITRYDROPIT';
+		const ajaxHandlerScript = "https://fe.it-academy.by/AjaxStringStorage2.php";
+		let updatePassword = Math.random();
+		let sp                  = new URLSearchParams();
+		sp.append('f', 'LOCKGET');
+		sp.append('n', stringName);
+		sp.append('p', updatePassword)
+
+		fetch(ajaxHandlerScript, {method: 'post', body: sp})
+			.then(response => response.json())
+			.then(result => {
+				let check = true;
+				const data = JSON.parse(result.result)
+				for (let i = 0; i < data.scores.length; i++) {
+					const item = data.scores[i];
+					if (item.username === ls.username) {
+						check = false;
+						item.score = this.model.score;
+						break;
+					}
+				}
+				if (check) {
+					data.scores.push({ username: ls.username, score: this.model.score } )
+				}
+				return data;
+			})
+			.then(data => {
+				let sp                  = new URLSearchParams();
+				sp.append('f', 'UPDATE');
+				sp.append('n', stringName);
+				sp.append('p', updatePassword);
+				sp.append('v', JSON.stringify(data));
+				return fetch(ajaxHandlerScript, {method: 'post', body: sp});
+			})
+
+			.catch(error => {
+				console.error('error', error);
+			});
+	}
 }
 

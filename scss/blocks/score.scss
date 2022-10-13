@@ -1,0 +1,61 @@
+.score {
+    &__title {
+        @include adaptive-font(50, 30);
+        color: $blue;
+        font-weight: 700;
+        &:not(:last-child) {
+            margin: 0px 0px 10px 0px
+        }
+    }
+    &__personal {
+        &:not(:last-child) {
+            margin: 0px 0px 10px 0px
+        }
+    }
+    &__result {
+        @include adaptive-font(60, 40);
+        font-weight: 700;
+        display: block;
+        color: $dark-red;
+        line-height: 1;
+    }
+    &__body {
+
+    }
+    &__list {
+
+    }
+
+}
+
+.list-score {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    &__item {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        &:not(:last-child) {
+            margin: 0px 0px 20px 0px
+        }
+
+    }
+    &__result, &__num, &__username {
+        @include adaptive-font(40, 30);
+        font-weight: 700;
+    }
+    &__result {
+        color: $dark-red;
+        line-height: 1;
+    }
+
+    &__num {
+        margin: 0px 10px 0px 0px;
+        color: $username;
+    }
+    &__username {
+        color: $username;
+        margin: 0px 20px 0px 0px;
+    }
+}

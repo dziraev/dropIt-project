@@ -34,6 +34,7 @@
 				sound: true,
 				vibration: false,
 				control: 'buttons',
+				score: 0
 			}
 		}
 		resolve(true)
