@@ -84,7 +84,6 @@ class Game {
 		//SOUND
 		this.soundPoint = new Audio('audio/sfx_point.wav');
 		this.soundLose = new Audio('audio/lose.wav');
-		this.initSound();
 	}
 
 	runGame() {
@@ -386,18 +385,6 @@ class Game {
 			.catch(error => {
 				console.error('error', error);
 			});
-	}
-
-	initSound = function() {
-		debugger;
-		this.soundPoint.currentTime = 0
-		let a = this.soundPoint.play();
-		if (a !== undefined) {
-			a.then(_ => {
-				this.soundPoint.pause();
-			})
-		}
-
 	}
 }
 
