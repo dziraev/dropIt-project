@@ -30,9 +30,8 @@ class View {
 						const inputUsername = document.querySelector('.username-game__input')
 						if (this.validInputUsername(inputUsername)) {
 							inputUsername.parentElement.innerHTML = ''
-							setTimeout(() => {
-								window.location.hash = 'Play'
-							})
+							window.location.hash = 'Play'
+
 						} else {
 							inputUsername.focus()
 						}
