@@ -64,6 +64,7 @@ class View {
 							})
 
 					} else {
+						alert('1')
 						this.model.control = e.target.value;
 					}
 					this.saveLocalStorage()
