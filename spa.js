@@ -45,8 +45,8 @@ function switchToStateFromURLHash() {
 			const cnv = document.createElement('canvas');
 			const ctx = cnv.getContext('2d');
 			if (window.innerWidth < 991.98) {
-				cnv.width  = innerWidth
-				cnv.height = innerHeight
+				cnv.width  = document.documentElement.clientWidth
+				cnv.height = document.documentElement.clientWidth
 			} else {
 				cnv.width  = innerWidth * 0.3;
 				cnv.height = innerHeight * 0.8;
@@ -69,7 +69,7 @@ function switchToStateFromURLHash() {
 				rotationSpeed: 15,
 				model: JSON.parse(localStorage.getItem('dropIt'))
 			})
-			setTimeout(game.runGame.bind(game), 400)
+			game.runGame()
 			break;
 		case 'GameOver':
 			GameOver.classList.remove('_hidden')
