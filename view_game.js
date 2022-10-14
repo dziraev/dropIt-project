@@ -115,7 +115,7 @@ class View {
 		personalTitle.textContent = 'Your best score';
 		const personalResult = document.createElement('span');
 		personalResult.classList.add('score__result');
-		personalResult.textContent = `${this.model.score}`
+		personalResult.textContent = `${JSON.parse(localStorage.getItem('dropIt')).score}`
 		personal.append(personalTitle, personalResult);
 		//TOP LIST SCORES
 		const topListWrap = document.createElement('div');

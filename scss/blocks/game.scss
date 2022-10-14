@@ -15,7 +15,8 @@
     bottom: 0;
     text-align: center;
     transition: filter 0.4s ease 0s;
-    &_game-over {
+    filter: grayscale(0);
+    &._game-over {
         filter: grayscale(0.8);
     }
 

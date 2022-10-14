@@ -52,7 +52,7 @@
 		gameView.run()
 		location.hash = "Menu";
 	}
-	Promise.all([AJAX(), false, loadLocalStorage]).then(result => {
+	Promise.all([AJAX(), loadLocalStorage]).then(result => {
 
 		setTimeout(renderGame, 1000)
 	})

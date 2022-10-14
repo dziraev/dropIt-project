@@ -82,10 +82,10 @@ class Game {
 		this.backGroundPosY = 0;
 
 		//SOUND
-		this.soundPoint = new Audio();
-		this.soundPoint.src = 'audio/sfx_point.wav'
-		this.soundLose = new Audio();
-		this.soundLose.src = 'audio/lose.wav';
+		this.soundPoint = new Audio('audio/sfx_point.wav');
+		this.soundLose = new Audio('audio/lose.wav');
+		this.soundPoint.pause();
+		this.soundLose.pause()
 
 	}
 
@@ -94,7 +94,6 @@ class Game {
 		this.endMoveListenerByKey = this.endMoveByKey.bind(this)
 
 		if (this.model.control === 'buttons' && this.cnr.closest('._touch')) {
-			alert('b', this.model.control)
 			this.startMoveListenerByTouch = this.startMoveByTouch.bind(this)
 			this.endMoveListenerByTouch = this.endMoveByTouch.bind(this)
 			this.blockGamePlay = this.cnr.querySelector('.game__play')
@@ -104,7 +103,6 @@ class Game {
 		} else if (this.model.control === 'accelerometer' && this.cnr.closest('._touch')) {
 			this.moveListenerByAccelerometer = this.moveByAccelerometer.bind(this)
 				window.addEventListener('deviceorientation', this.moveListenerByAccelerometer)
-				alert('a', this.model.control)
 		}
 
 		window.addEventListener('keydown', this.startMoveListenerByKey)
@@ -189,7 +187,6 @@ class Game {
 							this.pipeVelocity += 0.1
 						}
 						if (this.model.sound) {
-							this.soundPoint.autoplay = true
 							this.soundPoint.currentTime = 0;
 							this.soundPoint.play();
 						}
@@ -293,7 +290,7 @@ class Game {
 	moveByAccelerometer(e) { //TODO: ACCELEROMETER
 		const x = e.gamma;
 		this.ballPosX += x/5;
-		this.rotation += x/5;
+		this.rotation += x > 0 ? this.rotationSpeed : -this.rotationSpeed;
 	}
 
 	endGame() { //TODO: END GAME
