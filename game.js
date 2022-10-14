@@ -84,7 +84,6 @@ class Game {
 		//SOUND
 		this.soundPoint = new Audio('audio/sfx_point.wav');
 		this.soundLose = new Audio('audio/lose.wav');
-		this.initSound();
 	}
 
 	runGame() {
