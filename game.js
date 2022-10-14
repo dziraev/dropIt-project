@@ -391,7 +391,7 @@ class Game {
 	}
 
 	initSound() {
-		if (this.myModel.sound) {
+		if (this.model.sound) {
 			return;
 		}
 		let playPromise = this.soundPoint.play();
