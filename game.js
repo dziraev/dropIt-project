@@ -84,10 +84,7 @@ class Game {
 		//SOUND
 		this.soundPoint = new Audio('audio/sfx_point.wav');
 		this.soundLose = new Audio('audio/lose.wav');
-		this.soundPoint.play();
-		this.soundLose.play()
-		this.soundPoint.pause();
-		this.soundLose.pause()
+		this.initSound()
 
 	}
 
@@ -391,6 +388,25 @@ class Game {
 			.catch(error => {
 				console.error('error', error);
 			});
+	}
+
+	initSound() {
+		if (this.myModel.sound) {
+			return;
+		}
+		let playPromise = this.soundPoint.play();
+		if (playPromise !== undefined) {
+			playPromise.then(res => {
+				this.soundPoint.pause();
+			})
+		}
+		playPromise = this.soundLose.play();
+		if (playPromise !== undefined) {
+			playPromise.then(res => {
+				this.soundLose.pause();
+			})
+		}
+
 	}
 }
 

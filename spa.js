@@ -82,10 +82,6 @@ function switchToStateFromURLHash() {
 			setTimeout(game.runGame.bind(game), 100)
 			break;
 		case 'GameOver':
-			gameCnr.closest('.game').classList.add('_game-over')
-			setTimeout(()=> {
-				gameCnr.closest('.game').classList.remove('_game-over')
-			}, 600)
 			GameOver.classList.remove('_hidden')
 			Play.classList.add('_hidden')
 			Play.innerHTML = '';
