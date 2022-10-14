@@ -57,6 +57,7 @@ class View {
 						DeviceOrientationEvent.requestPermission()
 							.then(response => {
 								if (response === 'granted') {
+									alert(e.target.value)
 									this.model.control = e.target.value;;
 								}
 							})
