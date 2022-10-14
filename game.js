@@ -83,10 +83,8 @@ class Game {
 
 		//SOUND
 		this.soundPoint = new Audio();
-		this.soundPoint.autoplay = true
 		this.soundPoint.src = 'audio/sfx_point.wav'
 		this.soundLose = new Audio();
-		this.soundLose.autoplay = true;
 		this.soundLose.src = 'audio/lose.wav';
 
 	}
@@ -177,9 +175,10 @@ class Game {
 
 			if (this.ballPosY + this.ballRadius >= pipe.pipePosY && this.ballPosY + this.ballRadius  < pipe.pipePosY + pipe.pipeHeight ) {
 				if (this.ballPosX - this.ballRadius > pipe.pipeLeftWidth && this.ballPosX + this.ballRadius < pipe.pipeRightPosX) {
-					if (this.ballPosY + this.ballRadius >= this.cnvHeight * 0.3 && this.ballPosY + this.ballRadius <= this.cnvHeight * 0.8) {
+
+					if (this.ballPosY + this.ballRadius >= this.cnvHeight * 0.4 && this.ballPosY + this.ballRadius <= this.cnvHeight * 0.8) {
 						this.ballGravity = 0.8;
-					} else if(this.ballPosY + this.ballRadius <= this.cnvHeight * 0.8) {
+					} else if(this.ballPosY + this.ballRadius > this.cnvHeight * 0.8) {
 						this.ballGravity = 0.1;
 					} else {
 						this.ballGravity = 2;
@@ -190,6 +189,7 @@ class Game {
 							this.pipeVelocity += 0.1
 						}
 						if (this.model.sound) {
+							this.soundPoint.autoplay = true
 							this.soundPoint.currentTime = 0;
 							this.soundPoint.play();
 						}
@@ -312,6 +312,7 @@ class Game {
 			localStorage.setItem('dropIt', JSON.stringify(this.model));
 			this.saveScoreToServer()
 		}
+		this.soundLose.autoplay = true;
 		this.model.sound ? this.soundLose.play() : null;
 		if (navigator.vibrate && this.model.vibration) {
 			navigator.vibrate(600)
