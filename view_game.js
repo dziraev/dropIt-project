@@ -288,21 +288,19 @@ class View {
 	validInputUsername(input) { //TODO: VALIDATION
 		debugger
 		const inputValue = input.value;
-		if (this.data.scores.length && /([A-Za-z0-9_]{3,15})/.test(inputValue)) {
+		if (this.data.scores) {
 			for (let i = 0; i < this.data.scores.length; i++) {
-				const score = this.data.scores[i];
-				if (score === inputValue) {
-					input.classList.add('_error')
+				const user = this.data.scores[i];
+				if (user.username === inputValue) {
 					return false
-				} else {
-					this.model.username = inputValue;
-					this.saveLocalStorage()
-					input.classList.remove('_error')
-					return true
 				}
 			}
+		}
+		if (/([A-Za-z0-9_]{3,15})/.test(inputValue)) {
+			this.model.username = inputValue;
+			this.saveLocalStorage()
+			return true
 		} else {
-			input.classList.add('_error')
 			return false
 		}
 	}
