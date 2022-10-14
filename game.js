@@ -84,6 +84,8 @@ class Game {
 		//SOUND
 		this.soundPoint = new Audio('audio/sfx_point.wav');
 		this.soundLose = new Audio('audio/lose.wav');
+		this.soundPoint.play();
+		this.soundLose.play()
 		this.soundPoint.pause();
 		this.soundLose.pause()
 
@@ -290,7 +292,7 @@ class Game {
 	moveByAccelerometer(e) { //TODO: ACCELEROMETER
 		const x = e.gamma;
 		this.ballPosX += x/5;
-		this.rotation += x > 0 ? this.rotationSpeed : -this.rotationSpeed;
+		this.rotation += x/2;
 	}
 
 	endGame() { //TODO: END GAME
