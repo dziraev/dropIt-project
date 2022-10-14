@@ -328,6 +328,5 @@ class View {
 				isIOS: isIOS()
 		}
 	}
-
 }
 

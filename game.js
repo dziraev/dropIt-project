@@ -82,9 +82,8 @@ class Game {
 		this.backGroundPosY = 0;
 
 		//SOUND
-		this.soundPoint = new Audio('audio/sound_end.mp3');
+		this.soundPoint = new Audio('audio/sfx_point.wav');
 		this.soundLose = new Audio('audio/lose.wav');
-		this.initSound();
 	}
 
 	runGame() {
@@ -347,7 +346,6 @@ class Game {
 	}
 
 	saveScoreToServer() {
-		debugger
 		const ls = JSON.parse(localStorage.getItem('dropIt'));
 		const stringName        = 'DZIRAEV_DMITRYDROPIT';
 		const ajaxHandlerScript = "https://fe.it-academy.by/AjaxStringStorage2.php";
@@ -389,15 +387,5 @@ class Game {
 			});
 	}
 
-	initSound = function() {
-		debugger
-		let playPromise = this.soundPoint.play();
-		if (playPromise !== undefined) {
-			playPromise.then(_ => {
-				this.soundPoint.pause();
-			})
-		}
-
-	}
 }
 
