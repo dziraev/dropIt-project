@@ -142,7 +142,7 @@ class View {
 									  <span class="list-score__username">${item.username}</span> 
 									  <span class="list-score__result">${item.score}</span>`
 			topList.append(topListItem)
-			if (i === 9) break;
+			if (i === 4) break;
 		}
 
 
