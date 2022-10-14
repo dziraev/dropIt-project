@@ -99,9 +99,10 @@
         position: relative;
         display: inline-flex;
         align-items: center;
-        column-gap: 10px;
+        //column-gap: 10px;
         cursor: pointer;
         &::before {
+            margin-left: 10px;
             content: '';
             flex: 0 0 30px;
             height: 30px;

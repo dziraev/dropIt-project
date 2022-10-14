@@ -30,7 +30,9 @@ class View {
 						const inputUsername = document.querySelector('.username-game__input')
 						if (this.validInputUsername(inputUsername)) {
 							inputUsername.parentElement.innerHTML = ''
-							window.location.hash = 'Play'
+							setTimeout(() => {
+								window.location.hash = 'Play'
+							}, 200)
 						} else {
 							inputUsername.focus()
 						}
@@ -53,8 +55,7 @@ class View {
 					if (e.target.getAttribute('id') === 'buttons') {
 						this.model.control = e.target.value;
 					}
-					if ( e.target.getAttribute('id') === 'accelerometer') {
-						this.model.control = e.target.value;
+					if ( e.target.getAttribute('id') === 'accelerometer' && this.isMobile().isIOS) {
 						DeviceOrientationEvent.requestPermission()
 							.then(response => {
 								if (response === 'granted') {
@@ -63,6 +64,8 @@ class View {
 								}
 							})
 
+					} else {
+						this.model.control = e.target.value;
 					}
 					this.saveLocalStorage()
 				})

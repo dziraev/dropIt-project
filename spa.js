@@ -68,7 +68,7 @@ function switchToStateFromURLHash() {
 				rotationSpeed: 15,
 				model: JSON.parse(localStorage.getItem('dropIt'))
 			})
-			setTimeout(game.runGame.bind(game), 400)
+			game.runGame()
 			break;
 		case 'GameOver':
 			GameOver.classList.remove('_hidden')
