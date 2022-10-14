@@ -48,6 +48,7 @@ function switchToStateFromURLHash() {
 				cnv.width  = innerWidth
 				cnv.height = innerHeight
 			} else {
+				alert('else')
 				cnv.width  = innerWidth * 0.3;
 				cnv.height = innerHeight * 0.8;
 			}
