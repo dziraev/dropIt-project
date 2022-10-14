@@ -57,14 +57,13 @@ class View {
 						DeviceOrientationEvent.requestPermission()
 							.then(response => {
 								if (response === 'granted') {
-									alert(e.target.value)
-									this.model.control = e.target.value;;
+									this.model.control = e.target.value;
+									this.saveLocalStorage()
 								}
 							})
 
 					}
 					this.saveLocalStorage()
-					alert(this.model.control)
 				})
 			}
 			if (btn.classList.contains('game__button_restart')) {
