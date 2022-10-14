@@ -71,7 +71,7 @@ function switchToStateFromURLHash() {
 					model: JSON.parse(localStorage.getItem('dropIt'))
 				})
 				game.runGame()
-			}, 100)
+			}, 400)
 			break;
 		case 'GameOver':
 			GameOver.classList.remove('_hidden')
