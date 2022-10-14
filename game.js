@@ -278,8 +278,8 @@ class Game {
 
 	moveByAccelerometer(e) { //TODO: ACCELEROMETER
 		const x = e.gamma;
-		this.ballPosX += x/10;
-		this.rotation +=x
+		this.ballPosX = x;
+		this.rotation =x
 	}
 
 	endGame() { //TODO: END GAME

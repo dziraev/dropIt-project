@@ -54,11 +54,10 @@ class View {
 						this.model.control = e.target.value;
 					}
 					if ( e.target.getAttribute('id') === 'accelerometer') {
-						const target = e.target.value;
 						DeviceOrientationEvent.requestPermission()
 							.then(response => {
 								if (response === 'granted') {
-									this.model.control = target;
+									this.model.control = e.target.value;;
 								}
 							})
 
