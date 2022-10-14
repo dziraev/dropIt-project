@@ -23,7 +23,7 @@
 
     }
     &__list {
-
+        padding: 0 5vh;
     }
 
 }
@@ -34,10 +34,9 @@
     justify-content: center;
     &__item {
         display: flex;
-        justify-content: center;
-        align-items: center;
+        justify-content: space-between;
         &:not(:last-child) {
-            margin: 0px 0px 20px 0px
+
         }
 
     }
@@ -51,11 +50,10 @@
     }
 
     &__num {
-        margin: 0px 10px 0px 0px;
-        color: $username;
+        color: $blue;
     }
     &__username {
         color: $username;
-        margin: 0px 20px 0px 0px;
+
     }
 }

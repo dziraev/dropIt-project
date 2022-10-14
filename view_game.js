@@ -286,7 +286,6 @@ class View {
 	}
 
 	validInputUsername(input) { //TODO: VALIDATION
-		debugger
 		const inputValue = input.value;
 		if (this.data.scores) {
 			for (let i = 0; i < this.data.scores.length; i++) {

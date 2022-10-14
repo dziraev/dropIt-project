@@ -10,7 +10,7 @@ class Pipe {
 		this.pipeColor = pipeColor;   //цвет
 		this.pipeVelocity = pipeVelocity; //ускорение
 		this.pipeGap = cnvWidth * 0.15; //зазор
-		this.pipeLeftWidth = this.cnvWidth  * (Math.random() * (0.5) + 0.2); // ширина левой части
+		this.pipeLeftWidth = this.cnvWidth  * (Math.random() * (0.7) + 0.1); // ширина левой части
 		this.pipeRightPosX = this.pipeLeftWidth + this.pipeGap;  //Начальная координата Х правой части
 		this.pipeRightWidth = this.cnvWidth - this.pipeLeftWidth - this.pipeGap // Ширина правой части
 
@@ -83,8 +83,10 @@ class Game {
 
 		//SOUND
 		this.soundPoint = new Audio();
+		this.soundPoint.autoplay = true
 		this.soundPoint.src = 'audio/sfx_point.wav'
 		this.soundLose = new Audio();
+		this.soundLose.autoplay = true;
 		this.soundLose.src = 'audio/lose.wav';
 
 	}
@@ -175,9 +177,18 @@ class Game {
 
 			if (this.ballPosY + this.ballRadius >= pipe.pipePosY && this.ballPosY + this.ballRadius  < pipe.pipePosY + pipe.pipeHeight ) {
 				if (this.ballPosX - this.ballRadius > pipe.pipeLeftWidth && this.ballPosX + this.ballRadius < pipe.pipeRightPosX) {
-					this.ballGravity = 2;
+					if (this.ballPosY + this.ballRadius >= this.cnvHeight * 0.3 && this.ballPosY + this.ballRadius <= this.cnvHeight * 0.8) {
+						this.ballGravity = 0.8;
+					} else if(this.ballPosY + this.ballRadius <= this.cnvHeight * 0.8) {
+						this.ballGravity = 0.1;
+					} else {
+						this.ballGravity = 2;
+					}
 					if (this.ballPosY + this.ballRadius + pipe.pipeVelocity + this.ballGravity >= pipe.pipePosY + pipe.pipeHeight) {
 						this.score++;
+						if(this.score % 2 === 0) {
+							this.pipeVelocity += 0.1
+						}
 						if (this.model.sound) {
 							this.soundPoint.currentTime = 0;
 							this.soundPoint.play();
@@ -199,6 +210,7 @@ class Game {
 		this.drawScore();
 
 		this.id = requestAnimationFrame(this.updateGame.bind(this))
+
 
 		if (this.ballPosY - this.ballRadius <= 0) {
 			this.endGame()
@@ -280,8 +292,8 @@ class Game {
 
 	moveByAccelerometer(e) { //TODO: ACCELEROMETER
 		const x = e.gamma;
-		this.ballPosX = x;
-		this.rotation =x
+		this.ballPosX += x/5;
+		this.rotation += x/5;
 	}
 
 	endGame() { //TODO: END GAME
