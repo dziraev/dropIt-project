@@ -32,7 +32,7 @@ class View {
 							inputUsername.parentElement.innerHTML = ''
 							setTimeout(() => {
 								window.location.hash = 'Play'
-							}, 200)
+							})
 						} else {
 							inputUsername.focus()
 						}
@@ -56,7 +56,7 @@ class View {
 						this.model.control = e.target.value;
 					}
 					if ( e.target.getAttribute('id') === 'accelerometer' && this.isMobile().isIOS) {
-						DeviceOrientationEvent.requestPermission()
+						DeviceOrientationEvent.requestPermission() //TODO: DEVICE ORIENTATION
 							.then(response => {
 								if (response === 'granted') {
 									this.model.control = e.target.value;
