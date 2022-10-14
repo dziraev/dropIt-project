@@ -63,8 +63,8 @@ class View {
 								}
 							})
 
-					} else {
-						alert('1')
+					}
+					if(e.target.getAttribute('id') === 'accelerometer' && !this.isMobile().isIOS) {
 						this.model.control = e.target.value;
 					}
 					this.saveLocalStorage()
