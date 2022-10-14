@@ -94,6 +94,7 @@ class Game {
 		this.endMoveListenerByKey = this.endMoveByKey.bind(this)
 
 		if (this.model.control === 'buttons' && this.cnr.closest('._touch')) {
+			alert('b', this.model.control)
 			this.startMoveListenerByTouch = this.startMoveByTouch.bind(this)
 			this.endMoveListenerByTouch = this.endMoveByTouch.bind(this)
 			this.blockGamePlay = this.cnr.querySelector('.game__play')
@@ -103,6 +104,7 @@ class Game {
 		} else if (this.model.control === 'accelerometer' && this.cnr.closest('._touch')) {
 			this.moveListenerByAccelerometer = this.moveByAccelerometer.bind(this)
 				window.addEventListener('deviceorientation', this.moveListenerByAccelerometer)
+				alert('a', this.model.control)
 		}
 
 		window.addEventListener('keydown', this.startMoveListenerByKey)
@@ -306,7 +308,7 @@ class Game {
 
 
 	// СОЗДАНИЯ КНОПОК ДЛЯ УПРАВЛЕНИЯ
-	createButtons(elem) {
+	createButtons(elem) { //TODO: CONTROL BUTTONS
 		//BLOCK FOR BUTTONS
 		const blockBtn = document.createElement('div');
 		blockBtn.classList.add('game__control', 'control')

@@ -64,6 +64,7 @@ class View {
 
 					}
 					this.saveLocalStorage()
+					alert(this.model.control)
 				})
 			}
 			if (btn.classList.contains('game__button_restart')) {
