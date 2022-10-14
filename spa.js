@@ -44,32 +44,34 @@ function switchToStateFromURLHash() {
 			Play.classList.remove('_hidden')
 			const cnv = document.createElement('canvas');
 			const ctx = cnv.getContext('2d');
-			if (window.innerWidth < 991.98) {
-				cnv.width  = document.documentElement.clientWidth
-				cnv.height = document.documentElement.clientWidth
-			} else {
-				cnv.width  = innerWidth * 0.3;
-				cnv.height = innerHeight * 0.8;
-			}
+			setTimeout(()=> {
+				if (window.innerWidth < 991.98) {
+					cnv.width  = innerWidth
+					cnv.height = innerHeight
+				} else {
+					cnv.width  = innerWidth * 0.3;
+					cnv.height = innerHeight * 0.8;
+				}
 
-			Play.append(cnv);
-			let game = new Game({
-				cnr: gameCnr,
-				ctx: ctx,
-				cnvWidth: cnv.width,
-				cnvHeight: cnv.height,
-				pipePosY: cnv.height,
-				pipeHeight: 20,
-				pipeColor: '#ff4040ff',
-				pipeVelocity: 5,
-				ballPosX: Math.random() * cnv.width + cnv.width * 0.1,
-				ballPosY: cnv.height * 0.1,
-				radius: 15,
-				ballVelocity: 5,
-				rotationSpeed: 15,
-				model: JSON.parse(localStorage.getItem('dropIt'))
-			})
-			game.runGame()
+				Play.append(cnv);
+				let game = new Game({
+					cnr: gameCnr,
+					ctx: ctx,
+					cnvWidth: cnv.width,
+					cnvHeight: cnv.height,
+					pipePosY: cnv.height,
+					pipeHeight: 20,
+					pipeColor: '#ff4040ff',
+					pipeVelocity: 5,
+					ballPosX: Math.random() * cnv.width + cnv.width * 0.1,
+					ballPosY: cnv.height * 0.1,
+					radius: 15,
+					ballVelocity: 5,
+					rotationSpeed: 15,
+					model: JSON.parse(localStorage.getItem('dropIt'))
+				})
+				game.runGame()
+			}, 500)
 			break;
 		case 'GameOver':
 			GameOver.classList.remove('_hidden')
