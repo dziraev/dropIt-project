@@ -29,8 +29,8 @@ class View {
 					} else {
 						const inputUsername = document.querySelector('.username-game__input')
 						if (this.validInputUsername(inputUsername)) {
-							window.location.hash = 'Play'
 							inputUsername.parentElement.innerHTML = ''
+							window.location.hash = 'Play'
 						} else {
 							inputUsername.focus()
 						}
@@ -54,6 +54,7 @@ class View {
 						this.model.control = e.target.value;
 					}
 					if ( e.target.getAttribute('id') === 'accelerometer') {
+						this.model.control = e.target.value;
 						DeviceOrientationEvent.requestPermission()
 							.then(response => {
 								if (response === 'granted') {

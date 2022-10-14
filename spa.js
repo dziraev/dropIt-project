@@ -4,18 +4,8 @@
 window.onhashchange = switchToStateFromURLHash;
 
 
-// текущее состояние приложения
-// это Model из MVC
 const SPAState = {};
 
-// вызывается при изменении закладки УРЛа
-// а также при первом открытии страницы
-// читает новое состояние приложения из закладки УРЛа
-// и обновляет ВСЮ вариабельную часть веб-страницы
-// соответственно этому состоянию
-// это упрощённая реализация РОУТИНГА - автоматического выполнения нужных
-// частей кода в зависимости от формы URLа
-// "роутинг" и есть "контроллер" из MVC - управление приложением через URL
 function switchToStateFromURLHash() {
 	const URLHash  = window.location.hash;
 	const gameCnr  = document.querySelector('.game__container');
@@ -24,15 +14,14 @@ function switchToStateFromURLHash() {
 	const Play     = document.querySelector('.game__play');
 	const GameOver = document.querySelector('.game__menu.game__menu_game-over');
 
-	// убираем из закладки УРЛа решётку
-	// (по-хорошему надо ещё убирать восклицательный знак, если есть)
+
 	let stateStr = URLHash.slice(1);
 
-	if (stateStr != "") { // если закладка непустая, читаем из неё состояние и отображаем
+	if (stateStr != "") {
 		let parts         = stateStr.split("_");
-		SPAState.pagename = parts[0]; // первая часть закладки - номер страницы
+		SPAState.pagename = parts[0];
 	} else {
-		SPAState.pagename = 'Load'; // иначе показываем главную страницу
+		SPAState.pagename = 'Load';
 	}
 	switch (SPAState.pagename) {
 
@@ -79,7 +68,7 @@ function switchToStateFromURLHash() {
 				rotationSpeed: 15,
 				model: JSON.parse(localStorage.getItem('dropIt'))
 			})
-			setTimeout(game.runGame.bind(game), 1000)
+			setTimeout(game.runGame.bind(game), 400)
 			break;
 		case 'GameOver':
 			GameOver.classList.remove('_hidden')
