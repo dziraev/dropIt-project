@@ -79,6 +79,7 @@ function switchToStateFromURLHash() {
 				rotationSpeed: 15,
 				model: JSON.parse(localStorage.getItem('dropIt'))
 			})
+			setTimeout(game.runGame.bind(game))
 			game.runGame()
 			break;
 		case 'GameOver':
